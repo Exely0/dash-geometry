@@ -1,0 +1,218 @@
+@startuml
+
+skinparam class {
+    BackgroundColor<<Game>> LightBlue
+    BackgroundColor<<Menu>> LightGreen
+    BackgroundColor<<Level>> LightYellow
+    BackgroundColor<<Player>> LightCoral
+    BackgroundColor<<Object>> LightGray
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "Game Components" {
+    interface GameActions {
+        +void start()
+        +void pause()
+        +void resume()
+        +void end()
+        +GameState getState()
+    }
+
+    class Game <<Game>> implements GameActions {
+        -GameState state
+        +void start()
+        +void pause()
+        +void resume()
+        +void end()
+        +GameState getState()
+        +void saveGame()
+        +void loadGame()
+    }
+}
+
+package "Menu Components" {
+    interface MenuActions {
+        +void displayMainMenu()
+        +void displayLevelSelection()
+        +void displaySettings()
+        +void displayPauseMenu()
+        +void displayEndMenu()
+        +MenuType getCurrentMenu()
+    }
+
+    class Menu <<Menu>> implements MenuActions {
+        -MenuType currentMenu
+        +void displayMainMenu()
+        +void displayLevelSelection()
+        +void displaySettings()
+        +void displayPauseMenu()
+        +void displayEndMenu()
+        +MenuType getCurrentMenu()
+        +void navigateTo(MenuType menu)
+    }
+
+    class LevelSelection {
+        -List<Level> levels
+        +void displayLevels()
+        +void selectLevel(int index)
+        +Level getSelectedLevel()
+    }
+
+    class Settings {
+        +void displaySettings()
+        +void adjustSettings()
+        +void saveSettings()
+        +void loadSettings()
+    }
+
+    class PauseMenu {
+        +void displayPauseMenu()
+        +void quitToLevelSelection()
+        +void resumeGame()
+        +void saveGame()
+    }
+
+    class EndMenu {
+        +void displayEndMenu()
+        +void quitToLevelSelection()
+        +void replayLevel()
+        +void viewScores()
+    }
+}
+
+package "Level Components" {
+    class Level <<Level>>{
+        -String name
+        -LevelDifficulty difficulty
+        -boolean isCompleted
+        -int recordScore
+        -int currentScore
+        +void start()
+        +void end()
+        +void saveScore(int score)
+        +String getName()
+        +LevelDifficulty getDifficulty()
+        +boolean isCompleted()
+        +int getRecordScore()
+        +int getCurrentScore()
+        +void resetLevel()
+    }
+}
+
+package "Player Components" {
+    abstract class AbstractPlayer <<Player>> {
+        -double velocityX
+        -double velocityY
+        -double gravity
+        -double x
+        -double y
+        -bool isInvertedGravity
+        +void action()
+        +void resetPosition()
+        +double getX()
+        +double getY()
+        +void setX(double x)
+        +void setY(double y)
+        +void updatePosition(double deltaX, double deltaY)
+    }
+
+    class NormalPlayer <<Player>> extends AbstractPlayer {
+        +void action()
+    }
+
+    class RocketPlayer <<Player>> extends AbstractPlayer {
+        +void action()
+    }
+
+    class SpaceshipPlayer <<Player>> extends AbstractPlayer {
+        +void action()
+    }
+
+    class DashPlayer <<Player>> extends AbstractPlayer {
+        +void action()
+    }
+}
+
+package "Object Components" {
+    abstract class GameObject <<Object>> {
+        -double x
+        -double y
+        +void interact()
+        +double getX()
+        +double getY()
+    }
+
+    class Portal <<Object>> extends GameObject {
+        -PlayerType playerType
+        +void interact()
+        +PlayerType getPlayerType()
+        +void setPlayerType(PlayerType playerType)
+        +void destroyDuplicate()
+    }
+
+    class JumpPad <<Object>> extends GameObject {
+        +void interact()
+    }
+
+    class Coin <<Object>> extends GameObject {
+        -boolean isCollected
+        +void interact()
+        +boolean isCollected()
+        +void collect()
+    }
+
+    class FinishLine <<Object>> extends GameObject {
+        +void interact()
+        +void endLevel()
+    }
+
+    class FloatingBall <<Object>> extends GameObject {
+        +void interact()
+    }
+}
+
+package "Enums" {
+    enum PlayerType {
+        NORMAL,
+        ROCKET,
+        SPACESHIP,
+        DASH
+    }
+
+    enum GameState {
+        STARTED,
+        PAUSED,
+        RESUMED,
+        ENDED
+    }
+
+    enum MenuType {
+        MAIN_MENU,
+        LEVEL_SELECTION,
+        SETTINGS,
+        PAUSE_MENU,
+        END_MENU
+    }
+
+    enum LevelDifficulty {
+        EASY,
+        MEDIUM,
+        HARD,
+        EXPERT
+    }
+}
+
+Game --> Menu
+Game --> Level
+Game --> AbstractPlayer
+Game --> GameObject
+Menu --> LevelSelection
+Menu --> Settings
+Menu --> PauseMenu
+Menu --> EndMenu
+LevelSelection --> Level
+PauseMenu --> Game
+EndMenu --> Game
+
+@enduml
