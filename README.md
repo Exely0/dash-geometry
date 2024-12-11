@@ -30,6 +30,13 @@ This project is built with the following technologies:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Prérequis
+
+Avant de commencer, assurez-vous que votre environnement est configuré avec les éléments suivants :
+
+- **Java 8** ou une version ultérieure.
+- **JavaFX** correctement installé et intégré à votre IDE ou au JDK.
+
 ## Installation
 
 Suivez les étapes ci-dessous pour installer et exécuter le projet :
