@@ -3,11 +3,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <div style="font-size: 28px; font-wieght: semi-bold">
-    Dash Geometry
-  </div>
 
-<h3 align="center">Infact</h3>
+<h3 align="center">Dash geometry</h3>
 
   <p align="center">
 Dash geometry is a java fx video game inspired by the famous mobile game Geometry Dash
@@ -42,7 +39,7 @@ Suivez les étapes ci-dessous pour installer et exécuter le projet :
 Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
 
 ```bash
-git clone https://github.com/votre-utilisateur/geometry-dash-javafx.git
+git clone https://github.com/Exely0/dash-geometry
 ```
 
 ### Étape 2 : Compiler le projet
@@ -50,7 +47,7 @@ git clone https://github.com/votre-utilisateur/geometry-dash-javafx.git
 Ouvrez le projet dans votre IDE préféré (comme IntelliJ IDEA ou Eclipse), ou compilez-le manuellement via la ligne de commande :
 
 ```bash
-javac -d bin -sourcepath src src/com/votrepackage/Main.java
+javac -d bin -sourcepath src src/com/examplegeometrydash/MainApplication.java
 ```
 
 ### Étape 3 : Exécuter le projet
@@ -58,13 +55,13 @@ javac -d bin -sourcepath src src/com/votrepackage/Main.java
 Exécutez l'application en utilisant la commande suivante :
 
 ```bash
-java -cp bin com.votrepackage.Main
+java -cp bin com.example.geometrydash.MainApplication
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contact
 
-Project Link: [https://github.com/EpitechMscProPromo2027/T-WEB-501-LYO_23](https://github.com/EpitechMscProPromo2027/T-WEB-501-LYO_23)
+Project Link: [https://github.com/Exely0/dash-geometry](https://github.com/Exely0/dash-geometry)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
